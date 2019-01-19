@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.github.loadingview.LoadingDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.roger.catloadinglibrary.CatLoadingView;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
@@ -22,12 +24,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth mAuth;
     private ExtendedEditText email, password, username;
     private Button signin, signup;
+    private CatLoadingView catLoadingView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initalizeAllFields();
 
         //set listner to button
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         password = findViewById(R.id.activityMainPassword);
         signin = findViewById(R.id.activityMainSignInButton);
         signup = findViewById(R.id.activityMainSignUpButton);
+        catLoadingView = new CatLoadingView();
     }
 
     @Override
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        catLoadingView.show(getSupportFragmentManager(),"Sign in");
         switch (v.getId()) {
             case R.id.activityMainSignUpButton:
                 signupUser();
@@ -69,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.activityMainSignInButton:
                 signinUser();
         }
+
     }
 
     private void signinUser() {
@@ -81,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     FancyToast.makeText(MainActivity.this, "error sign in", FancyToast.LENGTH_LONG,
                             FancyToast.ERROR, true).show();
+                    catLoadingView.dismiss();
                 }
             }
         });
@@ -101,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     FancyToast.makeText(MainActivity.this, "error sign up", FancyToast.LENGTH_LONG,
                             FancyToast.ERROR, true).show();
+                    catLoadingView.dismiss();
                 }
             }
         });

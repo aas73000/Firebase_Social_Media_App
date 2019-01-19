@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.bitvale:lightprogress:1.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/lightprogress-1.0.0.aar/8d3f305e633da5f9926e92fbedca2317/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/lightprogress-1.0.0.aar/8d3f305e633da5f9926e92fbedca2317/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.bitvale/lightprogress/1.0.0/b0b054e4ec59792a6c40d0015064913347e6b640/lightprogress-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

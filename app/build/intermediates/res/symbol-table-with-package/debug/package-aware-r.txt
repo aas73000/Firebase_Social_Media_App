@@ -15,6 +15,8 @@ anim design_bottom_sheet_slide_in
 anim design_bottom_sheet_slide_out
 anim design_snackbar_in
 anim design_snackbar_out
+anim slide_in_bottom
+anim slide_out_top
 animator design_appbar_state_list_animator
 attr actionBarDivider
 attr actionBarItemBackground
@@ -301,6 +303,11 @@ attr listPreferredItemPaddingLeft
 attr listPreferredItemPaddingRight
 attr logo
 attr logoDescription
+attr lv_duration
+attr lv_end_color
+attr lv_external_radius
+attr lv_internal_radius
+attr lv_start_color
 attr manualValidateError
 attr maxActionInlineWidth
 attr maxButtonHeight
@@ -504,6 +511,8 @@ color colorAccent
 color colorPrimary
 color colorPrimaryDark
 color colorPurple
+color color_end
+color color_start
 color common_google_signin_btn_text_dark
 color common_google_signin_btn_text_dark_default
 color common_google_signin_btn_text_dark_disabled
@@ -858,8 +867,10 @@ drawable abc_vector_test
 drawable androidicon
 drawable avd_hide_password
 drawable avd_show_password
+drawable background
 drawable bg
 drawable box
+drawable cat
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -888,6 +899,7 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable error_shape
+drawable eyes
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_check_black_24dp
@@ -901,6 +913,7 @@ drawable ic_mic_black_24dp
 drawable ic_pan_tool_black_24dp
 drawable ic_refresh_black_24dp
 drawable info_shape
+drawable mouse
 drawable navigation_empty_icon
 drawable notification_action_background
 drawable notification_bg
@@ -914,6 +927,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable placeholder
 drawable success_shape
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -965,6 +979,7 @@ id blocking
 id bottom
 id buttonPanel
 id cancel_action
+id cat
 id center
 id center_horizontal
 id center_vertical
@@ -999,6 +1014,10 @@ id enterAlwaysCollapsed
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id eye_left
+id eye_right
+id eyelid_left
+id eyelid_right
 id fill
 id fill_horizontal
 id fill_vertical
@@ -1006,6 +1025,7 @@ id fixed
 id forever
 id ghost_view
 id gone
+id graduallyTextView
 id group_divider
 id groups
 id guideline
@@ -1028,11 +1048,13 @@ id line1
 id line3
 id listMode
 id list_item
+id loading_view
 id masked
 id media_actions
 id message
 id middle
 id mini
+id mouse
 id multiply
 id navigation_header_container
 id never
@@ -1082,7 +1104,11 @@ id smallLabel
 id snackbar_action
 id snackbar_text
 id snap
+id socialMediaListView
 id socialMediaLogOutMenu
+id socialMediaShareButton
+id socialMediaShareImage
+id socialMediaText
 id spacer
 id split_action_bar
 id spread
@@ -1188,6 +1214,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
 layout activity_social_media
+layout catloading_main
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -1203,6 +1230,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout fancytoast_layout
+layout loading_view
 layout notification_action
 layout notification_action_tombstone
 layout notification_media_action
@@ -1269,6 +1297,7 @@ string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
 string character_counter_pattern
+string click_here_to_share
 string common_google_play_services_enable_button
 string common_google_play_services_enable_text
 string common_google_play_services_enable_title
@@ -1304,6 +1333,7 @@ string path_password_strike_through
 string project_id
 string search_menu_title
 string status_bar_notification_info_overflow
+string welcome
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
@@ -1471,6 +1501,8 @@ style Base_Widget_AppCompat_Toolbar
 style Base_Widget_AppCompat_Toolbar_Button_Navigation
 style Base_Widget_Design_AppBarLayout
 style Base_Widget_Design_TabLayout
+style DialogAnimations
+style Permissions_TransparentTheme
 style Platform_AppCompat
 style Platform_AppCompat_Light
 style Platform_ThemeOverlay_AppCompat
@@ -1686,6 +1718,7 @@ style Widget_Design_Snackbar
 style Widget_Design_TabLayout
 style Widget_Design_TextInputLayout
 style Widget_Support_CoordinatorLayout
+style cart_dialog
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionMenuItemView android_minWidth
@@ -1731,6 +1764,7 @@ styleable LinearLayoutCompat android_gravity android_orientation android_baselin
 styleable LinearLayoutCompat_Layout android_layout_gravity android_layout_width android_layout_height android_layout_weight
 styleable ListPopupWindow android_dropDownHorizontalOffset android_dropDownVerticalOffset
 styleable LoadingImageView circleCrop imageAspectRatio imageAspectRatioAdjust
+styleable LoadingView lv_duration lv_end_color lv_external_radius lv_internal_radius lv_start_color
 styleable MenuGroup android_enabled android_id android_visible android_menuCategory android_orderInCategory android_checkableBehavior
 styleable MenuItem android_icon android_enabled android_id android_checked android_visible android_menuCategory android_orderInCategory android_title android_titleCondensed android_alphabeticShortcut android_numericShortcut android_checkable android_onClick actionLayout actionProviderClass actionViewClass alphabeticModifiers contentDescription iconTint iconTintMode numericModifiers showAsAction tooltipText
 styleable MenuView android_windowAnimationStyle android_itemTextAppearance android_horizontalDivider android_verticalDivider android_headerBackground android_itemBackground android_itemIconDisabledAlpha preserveIconSpacing subMenuArrow

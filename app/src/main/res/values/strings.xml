@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Firebase_Social_Media_App</string>
+    <string name="welcome">Welcome</string>
+    <string name="click_here_to_share">CLick here to share</string>
 </resources>
