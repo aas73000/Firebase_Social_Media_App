@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-        android:id="@+id/text_field_boxes"
+        android:id="@+id/socialMediaEdittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -45,7 +45,7 @@
         app:labelText="Enter Username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_field_boxes"
+        app:layout_constraintTop_toBottomOf="@+id/socialMediaEdittext"
         app:primaryColor="@android:color/background_light"
         app:secondaryColor="@android:color/background_light">
 

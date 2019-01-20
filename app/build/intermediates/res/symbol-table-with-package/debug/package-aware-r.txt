@@ -1104,8 +1104,10 @@ id smallLabel
 id snackbar_action
 id snackbar_text
 id snap
+id socialMediaEdittext
 id socialMediaListView
 id socialMediaLogOutMenu
+id socialMediaPostDesc
 id socialMediaShareButton
 id socialMediaShareImage
 id socialMediaText
@@ -1129,7 +1131,6 @@ id text
 id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
-id text_field_boxes
 id text_field_boxes2
 id text_field_boxes3
 id text_field_boxes_bottom

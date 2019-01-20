@@ -104,16 +104,16 @@ public final class R {
         public static final int save_image_matrix = 0x7f080090;
         public static final int save_non_transition_alpha = 0x7f080091;
         public static final int save_scale_type = 0x7f080092;
-        public static final int tag_transition_group = 0x7f0800be;
-        public static final int text = 0x7f0800c1;
-        public static final int text2 = 0x7f0800c2;
-        public static final int time = 0x7f0800d9;
-        public static final int title = 0x7f0800da;
-        public static final int transition_current_scene = 0x7f0800e3;
-        public static final int transition_layout_save = 0x7f0800e4;
-        public static final int transition_position = 0x7f0800e5;
-        public static final int transition_scene_layoutid_cache = 0x7f0800e6;
-        public static final int transition_transform = 0x7f0800e7;
+        public static final int tag_transition_group = 0x7f0800c0;
+        public static final int text = 0x7f0800c3;
+        public static final int text2 = 0x7f0800c4;
+        public static final int time = 0x7f0800da;
+        public static final int title = 0x7f0800db;
+        public static final int transition_current_scene = 0x7f0800e4;
+        public static final int transition_layout_save = 0x7f0800e5;
+        public static final int transition_position = 0x7f0800e6;
+        public static final int transition_scene_layoutid_cache = 0x7f0800e7;
+        public static final int transition_transform = 0x7f0800e8;
     }
     public static final class integer {
         private integer() {}

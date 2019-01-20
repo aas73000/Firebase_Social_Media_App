@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.FirebaseDatabase;
 import com.roger.catloadinglibrary.CatLoadingView;
 import com.shashank.sony.fancytoastlib.FancyToast;
@@ -98,11 +99,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    FancyToast.makeText(MainActivity.this, "Sign up successfully", FancyToast.LENGTH_LONG,
-                            FancyToast.SUCCESS, true).show();
                     FirebaseDatabase.getInstance().getReference().child("my_users")
                                     .child(task.getResult().getUser().getUid())
                                     .child("username").setValue(username.getText().toString());
+                    UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(username.getText().toString()).build();
+                    FirebaseAuth.getInstance().getCurrentUser().updateProfile(userProfileChangeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                FancyToast.makeText(MainActivity.this, "Sign up successfully", FancyToast.LENGTH_LONG,
+                                        FancyToast.SUCCESS, true).show();
+                            }
+                        }
+                    });
                     transitionToSocialMediaActivity();
                 } else {
                     FancyToast.makeText(MainActivity.this, "error sign up", FancyToast.LENGTH_LONG,
