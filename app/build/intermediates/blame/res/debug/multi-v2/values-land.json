@@ -4,26 +4,26 @@
             "outputFile": "C:\\Users\\Administrator\\AndroidStudioProjects\\Firebase_Social_Media_App\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\design-27.1.1.aar\\af4d0bc11fa3cbfa2bbf2e476a94aad0\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\material-1.0.0.aar\\d92adfe80fc334ad87ac25fc13387d23\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
                         "endLines": "5",
-                        "endColumns": "12",
-                        "endOffsets": "232"
+                        "endColumns": "10",
+                        "endOffsets": "222"
                     },
                     "to": {
                         "startLines": "5",
                         "startColumns": "4",
                         "startOffsets": "264",
                         "endLines": "8",
-                        "endColumns": "12",
-                        "endOffsets": "441"
+                        "endColumns": "10",
+                        "endOffsets": "431"
                     }
                 },
                 {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\5edb848561d91e59e3e05fecc68e42c9\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-1.1.0-alpha01.aar\\d3f13eaa937e00aec17b2440fb72217d\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",

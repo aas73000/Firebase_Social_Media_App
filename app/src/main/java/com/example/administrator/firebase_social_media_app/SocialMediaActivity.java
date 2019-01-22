@@ -5,11 +5,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,6 +38,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
 
 public class SocialMediaActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
@@ -50,12 +50,13 @@ public class SocialMediaActivity extends AppCompatActivity implements View.OnCli
     private Bitmap bitmap;
     private Button button;
     private ArrayAdapter arrayAdapter;
-    private ArrayList<String> usernamesArrayList,uidsArrayList;
+    private ArrayList<String> usernamesArrayList, uidsArrayList;
     private CatLoadingView catLoadingView;
     private ListView listView;
     private String imageDownloadLink;
     private String imageIdentifier;
     private ExtendedEditText extendedEditText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +66,7 @@ public class SocialMediaActivity extends AppCompatActivity implements View.OnCli
         initializeAllFields();
         imageView.setOnClickListener(this);
         button.setOnClickListener(this);
-        arrayAdapter = new ArrayAdapter(SocialMediaActivity.this,android.R.layout.simple_list_item_1, usernamesArrayList);
+        arrayAdapter = new ArrayAdapter(SocialMediaActivity.this, android.R.layout.simple_list_item_1, usernamesArrayList);
         listView.setAdapter(arrayAdapter);
         listView.setOnItemClickListener(this);
     }
@@ -78,24 +79,33 @@ public class SocialMediaActivity extends AppCompatActivity implements View.OnCli
         uidsArrayList = new ArrayList<>();
         listView = findViewById(R.id.socialMediaListView);
         extendedEditText = findViewById(R.id.socialMediaPostDesc);
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        logoutUser();
+        switch (item.getItemId()) {
+            case R.id.socialMediaViewPostMenu:
+                Intent intent = new Intent(this, ViewPostActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.socialMediaLogOutMenu:
+                logoutUser();
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 
     private void logoutUser() {
         mAuth.signOut();
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.social_media_menu,menu);
+        getMenuInflater().inflate(R.menu.social_media_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -107,18 +117,18 @@ public class SocialMediaActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-       switch (v.getId()){
-           case R.id.socialMediaShareImage:
-               getImageFromStorage();
-               break;
-           case R.id.socialMediaShareButton:
-               catLoadingView.show(getSupportFragmentManager(),"");
-               //loadingDialog = LoadingDialog.Companion.get(SocialMediaActivity.this).show();
-               uploadImageToServer();
-               break;
-               default:
-                   Log.i("ERROR INSWITCH","id mismatch");
-       }
+        switch (v.getId()) {
+            case R.id.socialMediaShareImage:
+                getImageFromStorage();
+                break;
+            case R.id.socialMediaShareButton:
+                catLoadingView.show(getSupportFragmentManager(), "");
+                //loadingDialog = LoadingDialog.Companion.get(SocialMediaActivity.this).show();
+                uploadImageToServer();
+                break;
+            default:
+                Log.i("ERROR INSWITCH", "id mismatch");
+        }
 
     }
 
@@ -127,29 +137,29 @@ public class SocialMediaActivity extends AppCompatActivity implements View.OnCli
             imageView.setDrawingCacheEnabled(true);
             imageView.buildDrawingCache();
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
             byte[] data = byteArrayOutputStream.toByteArray();
-            imageIdentifier = UUID.randomUUID()+".png";
+            imageIdentifier = UUID.randomUUID() + ".png";
             UploadTask uploadTask = FirebaseStorage.getInstance().getReference().child("Users_Image")
                     .child(imageIdentifier).putBytes(data);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    FancyToast.makeText(SocialMediaActivity.this,e.getMessage(),FancyToast.LENGTH_LONG,
-                            FancyToast.SUCCESS,true).show();
+                    FancyToast.makeText(SocialMediaActivity.this, e.getMessage(), FancyToast.LENGTH_LONG,
+                            FancyToast.SUCCESS, true).show();
                 }
             }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                    FancyToast.makeText(SocialMediaActivity.this,"Upload successfully",FancyToast.LENGTH_LONG,
-                            FancyToast.SUCCESS,true).show();
+                    FancyToast.makeText(SocialMediaActivity.this, "Upload successfully", FancyToast.LENGTH_LONG,
+                            FancyToast.SUCCESS, true).show();
                     catLoadingView.dismiss();
                     findViewById(R.id.socialMediaEdittext).setVisibility(View.VISIBLE);
                     FirebaseDatabase.getInstance().getReference().child("my_users").addChildEventListener(new ChildEventListener() {
                         @Override
                         public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                             uidsArrayList.add(dataSnapshot.getKey());
-                            String username = (String)dataSnapshot.child("username").getValue();
+                            String username = (String) dataSnapshot.child("username").getValue();
                             usernamesArrayList.add(username);
                             arrayAdapter.notifyDataSetChanged();
                         }
@@ -177,7 +187,7 @@ public class SocialMediaActivity extends AppCompatActivity implements View.OnCli
                     task.getResult().getMetadata().getReference().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 imageDownloadLink = task.getResult().toString();
                             }
                         }
@@ -190,7 +200,7 @@ public class SocialMediaActivity extends AppCompatActivity implements View.OnCli
                     FancyToast.LENGTH_LONG, FancyToast.SUCCESS, true).show();
         }
         //    catLoadingView.dismiss();
-       //loadingDialog.hide();
+        //loadingDialog.hide();
     }
 
     private void getImageFromStorage() {
@@ -198,8 +208,8 @@ public class SocialMediaActivity extends AppCompatActivity implements View.OnCli
                 new PermissionHandler() {
                     @Override
                     public void onGranted() {
-                        FancyToast.makeText(SocialMediaActivity.this,"Permission granted to access the gallery",FancyToast.LENGTH_LONG,
-                                FancyToast.SUCCESS,true).show();
+                        FancyToast.makeText(SocialMediaActivity.this, "Permission granted to access the gallery", FancyToast.LENGTH_LONG,
+                                FancyToast.SUCCESS, true).show();
                         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                         startActivityForResult(intent, 2000);
                     }
@@ -209,9 +219,9 @@ public class SocialMediaActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 2000 && resultCode == Activity.RESULT_OK && data != null){
+        if (requestCode == 2000 && resultCode == Activity.RESULT_OK && data != null) {
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),data.getData());
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
                 imageView.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -221,17 +231,17 @@ public class SocialMediaActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        HashMap<String,String> dataMap = new HashMap<>();
-        dataMap.put("fromWhom",FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-        dataMap.put("imageIdentifier",imageIdentifier);
-        dataMap.put("imageLink",imageDownloadLink);
-        dataMap.put("des",extendedEditText.getText().toString());
+        HashMap<String, String> dataMap = new HashMap<>();
+        dataMap.put("fromWhom", FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        dataMap.put("imageIdentifier", imageIdentifier);
+        dataMap.put("imageLink", imageDownloadLink);
+        dataMap.put("des", extendedEditText.getText().toString());
         FirebaseDatabase.getInstance().getReference().child("my_users").child(uidsArrayList.get(position))
                 .child("received_posts").push().setValue(dataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    FancyToast.makeText(SocialMediaActivity.this,"data send",FancyToast.LENGTH_SHORT,FancyToast.SUCCESS,true).show();
+                if (task.isSuccessful()) {
+                    FancyToast.makeText(SocialMediaActivity.this, "data send", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, true).show();
                 }
             }
         });

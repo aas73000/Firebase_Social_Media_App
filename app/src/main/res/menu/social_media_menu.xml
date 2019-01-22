@@ -3,6 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/socialMediaViewPostMenu"
+        android:icon="@drawable/viewpost"
+        android:title="View Post"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/socialMediaLogOutMenu"
         android:icon="@drawable/ic_iconfinder_log_out_2561461"
         android:title="logout"

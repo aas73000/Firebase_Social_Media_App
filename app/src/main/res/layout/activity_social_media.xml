@@ -53,6 +53,6 @@
         android:layout_marginEnd="@dimen/bottom_marginTop"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="@dimen/bottom_marginTop"
-        android:background="@color/color_end"
+        android:background="@color/colorPurple"
         android:visibility="visible" />
 </LinearLayout>
